@@ -1,26 +1,27 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
-double calcularPi(int iteraciones) {
-    double pi = 0.0;
-    int denominador = 1;
+using namespace std; 
+
+double Calcular_Pi(){
+    double valor_pi = 0;
+    double divisor = 1.0;
     int signo = 1;
+    double precision = 0.00000011;
 
-    for (int i = 0; i < iteraciones; i++) {
-        double termino = static_cast<double>(signo) / denominador;
-        pi += termino;
-        denominador += 2;
+    while (true) {
+        double valor_pi_bis = valor_pi;
+        valor_pi += signo * (1.0 / divisor);
+        divisor += 2;
         signo *= -1;
+        if (abs(valor_pi - valor_pi_bis) < precision) // calculo de valor absoluto que puedo desarrollar gracias a la libreria cmath
+            break;
     }
-
-    return pi * 4.0;
+    return valor_pi * 4;
 }
-
-int main() {
-    int iteraciones = 1000000;  
-
-    double pi = calcularPi(iteraciones);
-    std::cout << "el valor de pi calculado es: " << pi << std::endl;
-
-    return 0;
+int main(){
+    double ValorPi_Calculado = Calcular_Pi();
+    cout<<"El valor de pi es igual a "<< valorpi_calculado << endl; 
+    return 0; 
 }
